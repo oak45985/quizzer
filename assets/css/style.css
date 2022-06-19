@@ -28,3 +28,21 @@ section {
     padding-left: 20%;
     padding-right: 20%;
 }
+
+.quiz-question {
+    padding: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin: 5%;
+}
+
+.quiz-title {
+    padding: 0%;
+    margin: 0%;
+    padding-bottom: 5%;
+    display: block;
+}

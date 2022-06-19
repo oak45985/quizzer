@@ -11,29 +11,15 @@
 	<header>
         <p>Link to High Scores</p>
         <h1>QUIZ TIME</h1>
-        <p>Countdown Timer</p>
+        <p>Countdown Timer: <span id="countdown"></span></p>
     </header>
 
-    <section>
-        <div>
-            <form>
-                <h2 class = "quiz-question">Quiz Question</h2>
-                <input type = "radio" id = "opt1" name = "quiz1" value = "select1">
-                <label for="select1">Select 1</label>
-                <br>
-                <input type = "radio" id = "opt2" name = "quiz1" value = "select2">
-                <label for = "select2">Select 2</label>
-                <br>
-                <input type = "radio" id = "opt3" name = "quiz1" value = "select3">
-                <label for = "select3">Select 3</label>
-                <br>
-                <input type = "radio" id = "opt4" name = "quiz1" value = "select4">
-                <label for = "select4">Select 4</label>
-                <br>
-                <br>
-                <input type = "submit" value = "Submit">
-            </form>
-        </div>
+    <section id="main-area">
+        <h2>Answer the Questions Below</h2>
+        <div id="question-list">
+            <!-- <h3 id="actual-q">Here's a question!</h3> -->
+            <button id="start-button">Start the Quiz!</button>
+        </div>        
     </section>
     <script src="./assets/js/script.js"></script>
 </body>
