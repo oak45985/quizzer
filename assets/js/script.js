@@ -17,6 +17,7 @@ var ques  = [ {
         correctAnswer: 'c'}
         ];
 var currentQ = 0;
+var quizScore = 0;
 
 var killButton = function(event) {
     event.preventDefault();
@@ -35,33 +36,33 @@ var beginQuizEl = function () {
 
     var newQuestionEl = document.createElement("h3");
     newQuestionEl.className = "quiz-title";
-    newQuestionEl.innerHTML = ques[0].question;
+    newQuestionEl.textContent = ques[0].question;
     questionListEl.appendChild(newQuestionEl);
 
     var newAnswerOneEl = document.createElement("button");
     newAnswerOneEl.className = "quiz-question"
-    newAnswerOneEl.innerHTML = ques[0].answers.a;
+    newAnswerOneEl.textContent = ques[0].answers.a;
     newAnswerOneEl.setAttribute("data-value","a");
     newAnswerOneEl.addEventListener("click", checkAnswer);
     questionListEl.appendChild(newAnswerOneEl);
 
     var newAnswerTwoEl = document.createElement("button");
     newAnswerTwoEl.className = "quiz-question"
-    newAnswerTwoEl.innerHTML = ques[0].answers.b;
+    newAnswerTwoEl.textContent = ques[0].answers.b;
     newAnswerTwoEl.setAttribute("data-value", "b");
     newAnswerTwoEl.addEventListener("click", checkAnswer);
     questionListEl.appendChild(newAnswerTwoEl);
 
     var newAnswerThrEl = document.createElement("button");
     newAnswerThrEl.className = "quiz-question"
-    newAnswerThrEl.innerHTML = ques[0].answers.c;
+    newAnswerThrEl.textContent = ques[0].answers.c;
     newAnswerThrEl.setAttribute("data-value","c");
     newAnswerThrEl.addEventListener("click", checkAnswer);
     questionListEl.appendChild(newAnswerThrEl);
 
     var newAnswerFouEl = document.createElement("button");
     newAnswerFouEl.className = "quiz-question"
-    newAnswerFouEl.innerHTML = ques[0].answers.d;
+    newAnswerFouEl.textContent = ques[0].answers.d;
     newAnswerFouEl.setAttribute("data-value","d");
     newAnswerFouEl.addEventListener("click", checkAnswer);
     questionListEl.appendChild(newAnswerFouEl);
@@ -74,37 +75,52 @@ function checkAnswer(event) {
     var userSelect = this.getAttribute("data-value")
     if (userSelect === ques[currentQ].correctAnswer) {
         console.log("correct")
+        quizScore = quizScore + 1;
+        //create positive reinforcement
     } else {
         console.log("wrong")
+        //create negative reinforcement
+        //subtract time from counter item
     };
+
+    if (currentQ < ques.length - 1) {
+        currentQ = currentQ + 1;//currentQ++
+        whichQuestion()
+    } else { 
+        console.log("end of quiz");
+        //enter high score and log
+    }
 };
 
  var whichQuestion = function() {
-
-    
-
-    
+  document.querySelector(".quiz-title").textContent = ques[currentQ].question;
+  
+  var qOption = document.querySelectorAll(".quiz-question");
+  qOption[0].textContent = ques[currentQ].answers.a;
+  qOption[1].textContent = ques[currentQ].answers.b;
+  qOption[2].textContent = ques[currentQ].answers.c;
+  qOption[3].textContent = ques[currentQ].answers.d;    
 };
 
-var showQuestion = function(){
-    var currentQuestion = quizQuestions[questionNumber];
+// var showQuestion = function(){
+//     var currentQuestion = quizQuestions[questionNumber];
   
-    var title = document.getElementById('question-title');
-    title.textContent = currentQuestion.question
+//     var title = document.getElementById('question-title');
+//     title.textContent = currentQuestion.question
   
-    choicesElement.innerHTML = '';
+//     choicesElement.innerHTML = '';
   
-    currentQuestion.answers.forEach(function(option, index) {
-      var choiceButton = document.createElement('button')
-      choiceButton.setAttribute('value', option);
-      choiceButton.setAttribute('class', 'choice');
-      choiceButton.textContent = index + 1 + ':' + option;
-      //check if question is right or wrong
-      choiceButton.onclick = checkAnswer
-      choicesElement.appendChild(choiceButton);
+//     currentQuestion.answers.forEach(function(option, index) {
+//       var choiceButton = document.createElement('button')
+//       choiceButton.setAttribute('value', option);
+//       choiceButton.setAttribute('class', 'choice');
+//       choiceButton.textContent = index + 1 + ':' + option;
+//       //check if question is right or wrong
+//       choiceButton.onclick = checkAnswer
+//       choicesElement.appendChild(choiceButton);
   
-    });
-  };
+//     });
+//   };
 
 // var createQuizEl = function(quizQuestion) {
 //     var document.createElement("div");
