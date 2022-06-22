@@ -18,6 +18,8 @@ var ques  = [ {
         ];
 var currentQ = 0;
 var quizScore = 0;
+var timeLeft = 60;
+var timeInterval;
 
 var killButton = function(event) {
     event.preventDefault();
@@ -78,7 +80,8 @@ function checkAnswer(event) {
         quizScore = quizScore + 1;
         //create positive reinforcement
     } else {
-        console.log("wrong")
+        console.log("wrong");
+        timeLeft = timeLeft - 10;
         //create negative reinforcement
         //subtract time from counter item
     };
@@ -88,6 +91,8 @@ function checkAnswer(event) {
         whichQuestion()
     } else { 
         console.log("end of quiz");
+        clearInterval(timeInterval);
+        enterInitials();
         //enter high score and log
     }
 };
@@ -102,6 +107,18 @@ function checkAnswer(event) {
   qOption[3].textContent = ques[currentQ].answers.d;    
 };
 
+function enterInitials () {
+
+    var scoreDisplay = document.createElement("h3");
+    scoreDisplay.textContent = "Score: "+quizScore;
+    var inputElement = document.createElement("input");
+    var buttonElement = document.createElement("button");
+    buttonElement.textContent = "Save User Initials";
+    questionListEl.innerHTML = "";
+    questionListEl.appendChild(scoreDisplay);
+    questionListEl.appendChild(inputElement);
+    questionListEl.appendChild(buttonElement);
+}
 // var showQuestion = function(){
 //     var currentQuestion = quizQuestions[questionNumber];
   
@@ -161,9 +178,9 @@ function checkAnswer(event) {
 // }
 
 function countdown() {
-    var timeLeft = 60;
+    // var timeLeft = 60;
 
-    var timeInterval = setInterval(function () {
+     timeInterval = setInterval(function () {
         if (timeLeft > 1) {
             timerEl.textContent = timeLeft;
             timeLeft--;
@@ -173,9 +190,10 @@ function countdown() {
             timeLeft--;
         }
         else {
-            timerEl.textContent = "";
+            timerEl.textContent = "TIME UP";
             clearInterval(timeInterval);
-            displayMessage("get 'em next time you lucky fuck");
+            // displayMessage("get 'em next time you lucky fuck");
+            enterInitials();
         }
     }, 1000);
 
