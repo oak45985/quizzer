@@ -148,11 +148,11 @@ function enterInitials () {
             
             if (larry === null) {
                 oldScoreJsn = {name: "", score: parseInt(0)};
-                console.log("larry yes");
+                // console.log("larry yes");
             }
             else{
                 oldScoreJsn = JSON.parse(larry);
-                console.log("larry no");
+                // console.log("larry no");
             }
 
         };
@@ -175,7 +175,7 @@ function enterInitials () {
         } else {
             console.log("NOPE");
         };
-          
+        // debugger;
         location.reload();
     });
 }
@@ -208,15 +208,24 @@ var loadScore = function () {
     
     if (pistol1 === null) {
         pistol2 = {name: "", score: parseInt(0)};
+        var loadScoreEl = document.createElement("p");
+        loadScoreEl.className = "final-score"
+        loadScoreEl.innerHTML = "<p>There's no current high score!</p>";
+        showScoreEl.appendChild(loadScoreEl);
     }
     else{
         pistol2 = JSON.parse(pistol1);
-    }
-
+        console.log(JSON.parse(pistol1));
     var loadScoreEl = document.createElement("p");
     loadScoreEl.className = "final-score"
-    loadScoreEl.textContent = pistol1;
+    loadScoreEl.innerHTML = "<p>NAME: " + JSON.parse(pistol1).name + "<br>SCORE: " + JSON.parse(pistol1).score +"</p>";
     showScoreEl.appendChild(loadScoreEl);
+    }
+    // console.log(JSON.parse(pistol1));
+    // var loadScoreEl = document.createElement("p");
+    // loadScoreEl.className = "final-score"
+    // loadScoreEl.innerHTML = "<p>NAME: " + JSON.parse(pistol1).name + "<br>SCORE: " + JSON.parse(pistol1).score +"</p>";
+    // showScoreEl.appendChild(loadScoreEl);
 };
 // loadScore();
 
