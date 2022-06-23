@@ -46,3 +46,12 @@ section {
     padding-bottom: 5%;
     display: block;
 }
+
+.correct-wrong {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.correct-wrong-fade {
+    opacity: 0;
+}

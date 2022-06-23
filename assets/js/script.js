@@ -6,15 +6,18 @@ var createQuizEl = [];
 var ques  = [ { 
         question: 'This is question 1', 
         answers: { a: 'Answer 1.1', b: 'Answer 1.2', c: 'Answer 1.3', d: 'Answer 1.4'}, 
-        correctAnswer: 'a'},
+        correctAnswer: 'a',
+        quesNum: "1"},
         { 
         question: 'This is question 2', 
         answers: { a: 'Answer 2.1', b: 'Answer 2.2', c: 'Answer 2.3', d: 'Answer 2.4'}, 
-        correctAnswer: 'c'},
+        correctAnswer: 'c',
+        quesNum: "2"},
         { 
         question: 'This is question 3', 
         answers: { a: 'Answer 3.1', b: 'Answer 3.2', c: 'Answer 3.3', d: 'Answer 3.4'}, 
-        correctAnswer: 'c'}
+        correctAnswer: 'd',
+        quesNum: "3"}
         ];
 var currentQ = 0;
 var quizScore = 0;
@@ -78,10 +81,18 @@ function checkAnswer(event) {
     if (userSelect === ques[currentQ].correctAnswer) {
         console.log("correct")
         quizScore = quizScore + 1;
+        var showCorrectEl = document.createElement("h3");
+        showCorrectEl.className = "correct-wrong";
+        showCorrectEl.textContent = "Question " + ques[currentQ].quesNum + ": CORRECT!";
+        questionListEl.appendChild(showCorrectEl);
         //create positive reinforcement
     } else {
         console.log("wrong");
         timeLeft = timeLeft - 10;
+        var showCorrectEl = document.createElement("h3");
+        showCorrectEl.idName = "correct-wrong";
+        showCorrectEl.textContent = "Question " + ques[currentQ].quesNum + ": WRONG!";
+        questionListEl.appendChild(showCorrectEl);
         //create negative reinforcement
         //subtract time from counter item
     };
@@ -89,6 +100,13 @@ function checkAnswer(event) {
     if (currentQ < ques.length - 1) {
         currentQ = currentQ + 1;//currentQ++
         whichQuestion()
+        function fadeOut()
+        {
+            var item = showCorrectEl;
+            item.remove();
+        }
+        var delay = 500;
+        setTimeout(fadeOut, delay);
     } else { 
         console.log("end of quiz");
         clearInterval(timeInterval);
@@ -110,7 +128,7 @@ function checkAnswer(event) {
 function enterInitials () {
 
     var scoreDisplay = document.createElement("h3");
-    scoreDisplay.textContent = "Score: "+quizScore;
+    scoreDisplay.textContent = "Score: "+ (quizScore*25 + timeLeft);
     var inputElement = document.createElement("input");
     var buttonElement = document.createElement("button");
     buttonElement.textContent = "Save User Initials";
@@ -118,7 +136,35 @@ function enterInitials () {
     questionListEl.appendChild(scoreDisplay);
     questionListEl.appendChild(inputElement);
     questionListEl.appendChild(buttonElement);
+
+    buttonElement.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        var student = {
+            name: inputElement.value,
+            score: scoreDisplay.value,
+        };
+
+        localStorage.setItem("student", JSON.stringify(student));
+    });
 }
+
+// var signUpButton = document.querySelector("#sign-up");
+
+// signUpButton.addEventListener("click", function(event) {
+//   event.preventDefault();
+  
+//   var user = {
+//     firstName: firstNameInput.value.trim(),
+//     lastName: lastNameInput.value.trim(),
+//     email: emailInput.value.trim(),
+//     password: passwordInput.value.trim()
+//   };
+
+//   // set new submission to local storage 
+//   localStorage.setItem("user", JSON.stringify(user));
+// });
+
 // var showQuestion = function(){
 //     var currentQuestion = quizQuestions[questionNumber];
   
@@ -192,7 +238,6 @@ function countdown() {
         else {
             timerEl.textContent = "TIME UP";
             clearInterval(timeInterval);
-            // displayMessage("get 'em next time you lucky fuck");
             enterInitials();
         }
     }, 1000);
