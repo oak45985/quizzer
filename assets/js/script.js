@@ -131,97 +131,52 @@ function enterInitials () {
     scoreDisplay.textContent = "Score: "+ (quizScore*25 + timeLeft);
     var inputElement = document.createElement("input");
     var buttonElement = document.createElement("button");
-    buttonElement.textContent = "Save User Initials";
+    buttonElement.textContent = "Save User Initials & Restart the Quiz";
     questionListEl.innerHTML = "";
     questionListEl.appendChild(scoreDisplay);
     questionListEl.appendChild(inputElement);
     questionListEl.appendChild(buttonElement);
 
     buttonElement.addEventListener("click", function(event) {
-        event.preventDefault();
+        // event.preventDefault();
+        console.log("submit clicked");
+
+        var oldScore = function() {
+            var larry = localStorage.getItem('student');
+            
+            if (larry === null) {
+                oldScoreJsn = {name: "", score: parseInt(0)};
+                console.log("larry yes");
+            }
+            else{
+                oldScoreJsn = JSON.parse(larry);
+                console.log("larry no");
+            }
+
+        };
+        
+        oldScore();
+
+        console.log(oldScoreJsn);
 
         var student = {
             name: inputElement.value,
-            score: scoreDisplay.value,
+            score: parseInt(quizScore*25 + timeLeft),
+        };
+        console.log(student.score);
+        var saveScore = function() {
+        localStorage.setItem("student", JSON.stringify(student));
         };
 
-        localStorage.setItem("student", JSON.stringify(student));
+        if ( oldScoreJsn.score < student.score ) {
+            saveScore(); 
+        } else {
+            console.log("NOPE");
+        };
+          
+        location.reload();
     });
 }
-
-// var signUpButton = document.querySelector("#sign-up");
-
-// signUpButton.addEventListener("click", function(event) {
-//   event.preventDefault();
-  
-//   var user = {
-//     firstName: firstNameInput.value.trim(),
-//     lastName: lastNameInput.value.trim(),
-//     email: emailInput.value.trim(),
-//     password: passwordInput.value.trim()
-//   };
-
-//   // set new submission to local storage 
-//   localStorage.setItem("user", JSON.stringify(user));
-// });
-
-// var showQuestion = function(){
-//     var currentQuestion = quizQuestions[questionNumber];
-  
-//     var title = document.getElementById('question-title');
-//     title.textContent = currentQuestion.question
-  
-//     choicesElement.innerHTML = '';
-  
-//     currentQuestion.answers.forEach(function(option, index) {
-//       var choiceButton = document.createElement('button')
-//       choiceButton.setAttribute('value', option);
-//       choiceButton.setAttribute('class', 'choice');
-//       choiceButton.textContent = index + 1 + ':' + option;
-//       //check if question is right or wrong
-//       choiceButton.onclick = checkAnswer
-//       choicesElement.appendChild(choiceButton);
-  
-//     });
-//   };
-
-// var createQuizEl = function(quizQuestion) {
-//     var document.createElement("div");
-
-//     // return quizQuestion;
-// }
-
-// var quizQuestion = function() {
-//     var actionContainerEl = document.createElement("div");
-//     actionContainerEl.className = "question-list";
-
-//     var questionForQuizEl = document.createElement("h3");
-//     questionForQuizEl.textContent = qOne[question];
-
-//     var choiceOneButtonEl = document.createElement("button");
-//     choiceOneButtonEl.textContent = "Answer 1";
-//     choiceOneButtonEl.setAttribute("data-task-id");
-//     actionContainerEl.appendChild(choiceOneButtonEl);
-
-//     var choiceTwoButtonEl = document.createElement("button");
-//     choiceTwoButtonEl.textContent = "Answer 2";
-//     choiceTwoButtonEl.setAttribute("data-task-id");
-//     actionContainerEl.appendChild(choiceTwoButtonEl);
-
-//     var choiceThrButtonEl = document.createElement("button");
-//     choiceThrButtonEl.textContent = "Answer 3";
-//     choiceThrButtonEl.setAttribute("data-task-id");
-//     actionContainerEl.appendChild(choiceThrButtonEl);
-
-//     var choiceFouButtonEl = document.createElement("button");
-//     choiceFouButtonEl.textContent = "Answer 4";
-//     choiceFouButtonEl.setAttribute("data-task-id");
-//     actionContainerEl.appendChild(choiceFouButtonEl);
-
-
-
-//     return actionContainerEl;
-// }
 
 function countdown() {
     // var timeLeft = 60;
