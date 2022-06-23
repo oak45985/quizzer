@@ -2,6 +2,7 @@
 var timerEl = document.getElementById('countdown');
 var startQuizEl = document.querySelector("#start-button");
 var questionListEl = document.querySelector("#question-list");
+var showScoreEl = document.querySelector("#high-score");
 var createQuizEl = [];
 var ques  = [ { 
         question: 'This is question 1', 
@@ -23,6 +24,7 @@ var currentQ = 0;
 var quizScore = 0;
 var timeLeft = 60;
 var timeInterval;
+var loadScore;
 
 var killButton = function(event) {
     event.preventDefault();
@@ -199,6 +201,26 @@ function countdown() {
 
 }
 
+// startQuizEl.addEventListener('click', killButton);
 
-startQuizEl.addEventListener('click', killButton);
+var loadScore = function () {
+    var pistol1 = localStorage.getItem('student');
+    
+    if (pistol1 === null) {
+        pistol2 = {name: "", score: parseInt(0)};
+    }
+    else{
+        pistol2 = JSON.parse(pistol1);
+    }
+
+    var loadScoreEl = document.createElement("p");
+    loadScoreEl.className = "final-score"
+    loadScoreEl.textContent = pistol1;
+    showScoreEl.appendChild(loadScoreEl);
+};
+// loadScore();
+
+if ( document.URL.includes("index.html")) {
+    startQuizEl.addEventListener('click', killButton); }
+else { loadScore();}
 // startQuizEl.addEventListener('click', cycleQuestion);
