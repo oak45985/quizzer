@@ -133,7 +133,7 @@ function enterInitials () {
     scoreDisplay.textContent = "Score: "+ (quizScore*25 + timeLeft);
     var inputElement = document.createElement("input");
     var buttonElement = document.createElement("button");
-    buttonElement.textContent = "Save User Initials & Restart the Quiz";
+    buttonElement.textContent = "Save Your Name & Restart the Quiz";
     questionListEl.innerHTML = "";
     questionListEl.appendChild(scoreDisplay);
     questionListEl.appendChild(inputElement);
