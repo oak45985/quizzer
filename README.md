@@ -22,6 +22,6 @@ THEN I can save my initials and score : CREATED
 
 ![image of page](./assets/images/Screen%20Shot%202022-06-23%20at%209.00.40%20PM.png)
 
-# Link: https://oak45985.github.io/quizzer/
+# Amended Link: [https://oak45985.github.io/quizzer/](https://oak45985.github.io/quizzer/index.html)
 
 # Created by John Oakley (Finalized 6.23.22)
