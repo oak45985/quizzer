@@ -8,16 +8,20 @@ SO THAT I can gauge my progress compared to my peers
 REQUIREMENTS:
 GIVEN I am taking a code quiz
 WHEN I click the start button
-THEN a timer starts and I am presented with a question
+THEN a timer starts and I am presented with a question: : CREATED
 WHEN I answer a question
-THEN I am presented with another question
+THEN I am presented with another question : CREATED
 WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
+THEN time is subtracted from the clock : CREATED
 WHEN all questions are answered or the timer reaches 0
-THEN the game is over
+THEN the game is over : CREATED
 WHEN the game is over
-THEN I can save my initials and score
+THEN I can save my initials and score : CREATED
 
-# Link:
+# Page Image
 
-# Created by John Oakley
+![image of page](./assets/images/Screen%20Shot%202022-06-23%20at%209.00.40%20PM.png)
+
+# Link: https://oak45985.github.io/quizzer/
+
+# Created by John Oakley (Finalized 6.23.22)
