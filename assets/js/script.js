@@ -5,18 +5,18 @@ var questionListEl = document.querySelector("#question-list");
 var showScoreEl = document.querySelector("#high-score");
 var createQuizEl = [];
 var ques  = [ { 
-        question: 'This is question 1', 
-        answers: { a: 'Answer 1.1', b: 'Answer 1.2', c: 'Answer 1.3', d: 'Answer 1.4'}, 
+        question: 'What are variables used for in JavaScript Programs?', 
+        answers: { a: 'Storing numbers, dates, or other values', b: 'Vary randomly', c: 'Getting Dates', d: 'Accessing the DOM'}, 
         correctAnswer: 'a',
         quesNum: "1"},
         { 
-        question: 'This is question 2', 
-        answers: { a: 'Answer 2.1', b: 'Answer 2.2', c: 'Answer 2.3', d: 'Answer 2.4'}, 
+        question: 'Which of the following are capabilities of functions in JavaScript?', 
+        answers: { a: 'Return a Value', b: 'Accept parameters & Return a value', c: 'Accept parameters', d: 'None of the above'}, 
         correctAnswer: 'c',
         quesNum: "2"},
         { 
-        question: 'This is question 3', 
-        answers: { a: 'Answer 3.1', b: 'Answer 3.2', c: 'Answer 3.3', d: 'Answer 3.4'}, 
+        question: 'What is the correct JavaScript syntax to write "Hello World"?', 
+        answers: { a: 'System.out.println("Hello World")', b: 'println ("Hello World")', c: 'response.write("Hello World")', d: 'document.write("Hello World")'}, 
         correctAnswer: 'd',
         quesNum: "3"}
         ];
